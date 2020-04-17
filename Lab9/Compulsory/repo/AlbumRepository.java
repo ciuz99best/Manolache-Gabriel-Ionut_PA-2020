@@ -6,16 +6,17 @@
 package repo;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
  * @author ciuzb
  */
 @Entity
+@Table(name="Albums")
+@NamedQueries({
+ @NamedQuery(name = "AlbumRepository.findByName",
+ query = "SELECT a FROM Albums a WHERE a.name=:name")})
 public class AlbumRepository implements Serializable {
 
     private static final long serialVersionUID = 1L;

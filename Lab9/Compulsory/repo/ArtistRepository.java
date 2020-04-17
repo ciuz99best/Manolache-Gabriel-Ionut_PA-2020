@@ -6,23 +6,30 @@
 package repo;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
  * @author ciuzb
  */
 @Entity
+@Table(name="Artists")
+@NamedQueries({
+ @NamedQuery(name = "ArtistRepository.findByName",
+ query = "SELECT a FROM Artists a WHERE a.name=:name")})
+
 public class ArtistRepository implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-
+    @Column(name = "NAME")
+    private String name; 
+    @Column(name = "COUNTRY")
+    private String country; 
     public String getId() {
         return id;
     }
@@ -55,5 +62,4 @@ public class ArtistRepository implements Serializable {
     public String toString() {
         return "repo.ArtistRepository[ id=" + id + " ]";
     }
-    
 }
